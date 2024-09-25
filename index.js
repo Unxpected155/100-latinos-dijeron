@@ -1,4 +1,9 @@
-// Definimos las respuestas que queremos mostrar para cada div
+const titulos = {
+  1: "Mencione un milagro que realizó Jesús según la Biblia",
+  2: " ¿Quién fue un seguidor o discípulo de Jesús?",
+  3: "¿En qué lugar predicó Jesús?",
+};
+
 const respuestas = {
   1: {
     1: "Hola Mundo",
@@ -26,32 +31,40 @@ const respuestas = {
   },
 };
 
-let currentStep = 1; // Estado para el paso actual
+let currentStep = 1;
 
-// Función para manejar el evento de teclas
 document.addEventListener("keydown", function (event) {
   // Verificar si la tecla presionada es 1, 2, 3, 4, 5 o 6
   if (["1", "2", "3", "4", "5", "6"].includes(event.key)) {
     const cardId = `card-${event.key}`; // Por ejemplo, 'card-1'
     const card = document.getElementById(cardId);
 
-    // Aplicamos la animación de flip
     card.classList.toggle("flipped");
 
-    // Cambiamos el texto al nuevo contenido en el reverso
     const cardBack = card.querySelector(".card-back");
 
     if (card.classList.contains("flipped")) {
-      cardBack.textContent = respuestas[currentStep][event.key]; // Muestra la respuesta en el reverso según el step actual
+      cardBack.textContent = respuestas[currentStep][event.key];
     }
   }
 });
 
+function resetCards() {
+  const cards = document.querySelectorAll(".card"); // Selecciona todas las cartas
+  cards.forEach((card) => {
+    card.classList.remove("flipped"); // Remueve la clase 'flipped' de todas las cartas
+    const cardBack = card.querySelector(".card-back");
+    cardBack.textContent = ""; // Limpia el contenido del reverso
+  });
+}
 // Función para cambiar el step actual
 function changeStep(newStep) {
   currentStep = newStep;
   const stepTitle = document.getElementById("step-title");
-  stepTitle.textContent = `Step ${currentStep}`;
+  stepTitle.textContent = titulos[currentStep];
+
+  // Llamamos a resetCards para voltear todas las cartas antes de cambiar el step
+  resetCards();
 }
 
 // Cambiar el paso usando las teclas de flecha
@@ -65,3 +78,8 @@ document.addEventListener("keydown", function (event) {
     changeStep(currentStep - 1); // Retrocede un paso
   }
 });
+
+window.onload = function () {
+  const stepTitle = document.getElementById("step-title");
+  stepTitle.textContent = titulos[1]; // Muestra "Título 1" al cargar la página
+};
