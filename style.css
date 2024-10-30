@@ -5,7 +5,7 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Comenzar desde la parte superior */
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
@@ -14,14 +14,14 @@ body {
 .header {
   width: 100%;
   text-align: center;
-  padding: 1rem 0; /* Añadir espacio alrededor del título */
+  padding: 1rem 0;
 }
 
 .container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centrar las tarjetas */
+  justify-content: center;
 }
 
 .container > div {
@@ -30,7 +30,7 @@ body {
 }
 
 .card {
-  perspective: 1000px; /* Añade perspectiva para el efecto 3D */
+  perspective: 1000px;
 }
 
 .card-inner {
@@ -53,6 +53,7 @@ body {
   backface-visibility: hidden;
   display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   font-size: 48px;
   border-radius: 10px;
